@@ -1,0 +1,540 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap');
+/*----variables----*/
+$textColor: #FFC700;
+$darkTextColor:#1F1F1F ;
+$mainLinks: #1F1F1F;
+$backgroundColor : #1F1F1F;
+$backgroundSlide: #363636;
+$lightText: #DFDFDF;
+
+/*----Mixins o funciones css----*/
+@mixin navButtons{
+    padding: 12px 40px;
+    color: $textColor;
+    background-color: $darkTextColor;
+    text-decoration: none;
+    font-size: 1rem;
+    border-radius: 5px;
+    margin: 0 2px;
+    letter-spacing: 4px;
+}
+@mixin secondaryButtons{
+    padding: 10px 100px;
+    color: $textColor;
+    background-color: $darkTextColor;
+    text-decoration: none;
+    font-size: 1rem;
+    border-radius: 5px;
+}
+@mixin activeButton{
+    padding: 12px 40px;
+    color: $darkTextColor;
+    background-color: $textColor;
+    text-decoration: none;
+    font-size: 1rem;
+    letter-spacing: 4px;
+    font-weight: bold;
+    border: 1px solid $textColor;
+    transition: 0.2s ease-in-out;
+    text-align: center;
+}
+@mixin activeButtonResponsive{
+    padding: 10px 20px;
+    color: $darkTextColor;
+    background-color: $textColor;
+    text-decoration: none;
+    font-size: 1rem;
+    letter-spacing: 0;
+    font-weight: bold;
+    border: 1px solid $textColor;
+    transition: 0.2s ease-in-out;
+    text-align: center;
+}
+@mixin hoverActiveButton{
+    border: 1px solid $textColor;
+    color: $textColor;
+    background-color: $backgroundColor;
+}
+@mixin hoverNavButtons(){
+    background-color: $textColor;
+}
+/*----Estilos del body y html----*/
+html{
+    scroll-behavior: smooth;
+}
+*{
+    padding: 0;
+    margin: 0;
+}
+body{
+    box-sizing: border-box;
+    background: $backgroundColor;
+    font-family: 'Raleway', sans-serif;
+    overflow-x: hidden;
+
+}
+
+.bodyContainer{
+    width: 94%;
+    max-width: 1900px;
+    margin: auto;
+}
+/*----Estilos del nav para escritorio y mobil (responsive)----*/
+.nav-container{
+    width: 100%;
+    background-color: $backgroundColor;
+    margin: 40px 0;
+    .navbar{
+        display: grid;
+        grid-template-columns: 0.2fr auto 1fr;
+        align-items: center;
+        height: 90px;
+        margin: 0 auto;
+        #navbar-logo{
+            font-family: 'Architects Daughter', cursive;
+            color: $lightText;
+            justify-self: start;
+            margin-left: 20px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: 0.2s ease-in-out;
+        }
+        #navbar-logo:hover{
+            color: #ffffff;
+        }
+        .nav-menu{
+            display: grid;
+            grid-template-columns:  repeat(3, auto);
+            list-style: none;
+            text-align: center;
+            justify-self: end;
+            .nav-links{
+                color: $textColor;
+                text-decoration: none;
+                padding: 10px 30px;
+                transition: 0.2s ease-in-out;
+                border-radius: 5px;
+                margin: 0 5px;
+            }
+            .nav-links:hover{
+                background-color: $textColor;
+                color: $backgroundSlide;
+            }
+        }
+        .menu-toggle .bar{
+            width:25px;
+            height: 3px;
+            margin: 5px auto;
+            background-color: $textColor;
+            transition:  all 0.3s ease-in-out;
+        }
+    }
+
+}
+@media only screen and (max-width: 818px) {
+    .nav-container{
+        position: relative;
+        .navbar{
+            width: 100%;
+            #navbar-logo{
+                margin-left: 20px;
+            }
+            #mobile-menu{
+                position: absolute;
+                top: 20%;
+                right: 0%;
+                transform: translate(5%,20%);
+            }
+            .nav-menu{
+                display: grid;
+                grid-template-columns: auto;
+                margin: 0;
+                width: 100%;
+                position: absolute;
+                top: 80px;
+                left: -100%;
+                opacity: 0;
+                transition:all 0.2s ease-in-out;
+                justify-content: center;
+                .nav-links{
+                    text-align: center ;
+                    line-height: 60px;
+                    width: 60%;
+                    display: table;
+                    margin: 10px 0;
+                }
+
+            }
+            .nav-menu.active{
+                background: $backgroundColor;
+                left: 0;
+                opacity: 1;
+                transition: all 0.2s ease-in-out;
+                box-shadow: 1px 1px 20px black;
+                border-radius: 10px;
+            }
+            .menu-toggle .bar{
+                align-self: center;
+                display: block;
+                cursor: pointer;
+            }
+            #mobile-menu.is-active .bar:nth-child(2){
+                opacity: 0;
+            }
+            #mobile-menu.is-active .bar:nth-child(1){
+                transform: translateY(8px) rotate(45deg);
+            }
+            #mobile-menu.is-active .bar:nth-child(3){
+                transform: translateY(-8px) rotate(-45deg);
+            }
+        }
+    }
+
+}
+/*----Estilos de la presentación para escritorio y mobil (responsive)----*/
+.presentation{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
+    margin: auto;
+    
+    .info{
+        .title{
+            color: $textColor;
+            font-size: 7em;
+            
+        }
+        .subTItle{
+            color:$lightText;
+            font-size: 2em;
+            font-weight: lighter;
+            margin-bottom: 40px;
+        }
+        .letter{
+            @include activeButton();
+            animation: 2s shadowBox;
+        }
+        .letter:hover{
+            @include hoverActiveButton();
+        }
+    }
+    .img{
+        img{
+            width: 400px;
+            height: auto;
+        }
+    }
+}
+
+@media only screen and (max-width: 973px){
+    .presentation{
+        display: flex;
+        flex-direction: column;
+        text-align: left;
+        .img{
+            img{
+                margin-top: 20px;
+                width: 450px;
+                height: auto;
+            }
+        }
+    }
+} 
+
+@media only screen and (max-width: 591px){
+    .presentation{
+        .info{
+            .title{
+                font-size: 5em;
+            }
+            .subTItle{
+                font-size: 2em;
+            }
+        }
+        .img{
+            img{
+                margin-top: 20px;
+                width: 250px;
+                height: auto;
+            }
+        }
+    }
+}
+@media only screen and (max-width: 358px){
+    .presentation{
+        .info{
+            .letter{
+                @include activeButtonResponsive();
+                animation: 2s shadowBox;
+                padding: 10px 10px;
+            }
+        }
+    }
+}
+/*----Estilos "Nosotros" para escritorio y mobil (responsive)----*/
+.aboutUs{
+     padding-top: 220px;
+    margin-top: 400px;
+    .title{
+        text-align: center;
+        padding: 10px 30px;
+        color: $textColor;
+    }
+    .aboutUsContent{
+        width: 80%;
+        margin: auto;
+        display: flex;
+        justify-content: space-between;
+        .aboutUsInfo{
+            .subTItle{
+                color: $textColor;
+                padding: 20px 0;
+                font-size: 1.7em;
+            }
+            .paragraph{
+                color: $lightText;
+                font-size: 1.5em;
+                font-weight: lighter;
+            }
+        }
+        .imgContent{
+            img{
+                width: 500px;
+                height: auto;
+            }
+        }
+    }
+    .imgFooter{
+        img{
+            width: 100%;
+            height: 120px;
+
+            margin-top: 120px;
+            bottom: 0;
+        }
+
+    }
+}
+@media only screen and (max-width: 973px){
+    .aboutUs{
+        .aboutUsContent{
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            .imgContent{
+                img{
+                    margin-top: 40px;
+                    width: 400px;
+                    height: auto;
+                }
+            }
+        }
+    }
+}
+@media only screen and (max-width: 591px){
+    .aboutUs{
+        .aboutUsContent{
+            .imgContent{
+                img{
+                    width: 200px;
+                    height: auto;
+                }
+            }
+        }
+    }
+}
+/*----Estilos "Nuestra Carta" para escritorio y mobil (responsive)----*/
+.letter{
+    margin-top: 320px;
+    margin-bottom: 100px;
+    .mainTitle{
+        color: $textColor;
+        text-align: center;
+        margin-bottom: 60px;
+    }
+    .letterMainContainer{
+        display: flex;
+        justify-content: space-around;
+        .container-group{
+            margin: 0 0 30px 0;
+            .title{
+                background-color: $textColor;
+                padding: 10px 110px;
+                font-size: 1em;
+                text-align: center;
+                color: $backgroundColor;
+                letter-spacing: 4px;
+            }
+            .links{
+                .link-items{
+                    display: flex;
+                    justify-content: space-between;
+                    padding: 12px 10px;
+                    color: $lightText;
+                }
+                .link-items:hover{
+                    background-color: $backgroundSlide;
+                }
+            }
+            .links-specials{
+                margin: 0 0 10px 0;
+                .link-items-specials{
+                    color:$lightText;
+                    padding: 3px 10%;
+                    list-style: none;
+                    font-weight: lighter;
+                    font-size: 0.8em;
+
+                }
+                .link-items-specials::before{
+                    content: "●  ";
+                    font-size: 10px;
+                }
+            }
+        }
+    }
+}
+@media only screen and (max-width: 1332px){
+    .letter{
+        .letterMainContainer{
+
+            display: grid;
+            grid-template-columns: repeat(2,49%);
+        }
+    }
+}
+@media only screen and (max-width: 814px){
+    .letter{
+        .letterMainContainer{
+
+            display: grid;
+            grid-template-columns: repeat(1,100%);
+        }
+    }
+}
+@media only screen and (max-width:446px){
+    .letter{
+        .letterMainContainer{
+            .container-group{
+                .title{
+                    font-size: 0.6em;
+                    letter-spacing: 0px;
+                    font-weight: bold;
+                }
+                .links{
+                    .link-items{
+                        font-size: 0.6em;
+                    }
+                }
+                .links-specials{
+
+                    .link-items-specials{
+                        font-size: 0.6em;
+                    }
+
+                }
+            }
+        }
+    }
+}
+/*----Estilos "Informacion de contacto" para escritorio y mobil (responsive)----*/
+.contactUs{
+    display: flex;
+    justify-content: space-around;
+    margin: 0 0 50px 0;
+        .tittle{
+            color: $textColor;
+        }
+        .location{
+            margin-bottom: 40px;
+            .links{
+                .link-items{
+                    margin:10px 0;
+                    list-style: none;
+                    a{
+                        text-decoration: none;
+                        color: $lightText;
+                    }
+                }
+            }
+        }
+        .schedule{
+            .links{
+                .link-items{
+                    margin:10px 0;
+                    list-style: none;
+                    color: $lightText;
+                    a{
+                        text-decoration: none;
+                    }
+                }
+            }
+        }
+}
+@media screen and (max-width:446px){
+    .contactUs{
+        flex-direction: column;
+        text-align: center;
+    }
+
+/*----Estilos "Informacion de contacto" para escritorio y mobil (responsive)----*/
+/*----Estilos "Informacion de contacto" para escritorio y mobil (responsive)----*/
+}
+/*----Estilos "Footer" para escritorio y mobil (responsive)----*/
+footer{
+    min-width: 100%;
+    padding: 20px 0;
+    background-color: #121212;
+    margin-top: 120px;
+    .blocks{
+        display: flex;
+        justify-content: space-around;
+        margin-bottom:50px;
+        .block{
+            list-style: none;
+            .link-header{
+                color: $lightText;
+                margin:  0 0 30px 0;
+            }
+            .link-item{
+                margin: 0 0 5px 0;
+                a{
+                    font-weight:lighter;
+                    opacity: 50%;
+                    color: $lightText;
+                    text-decoration: none;
+                    transition: 0.2s ease-in-out;
+                }
+                a:hover{
+                    opacity:80%;
+                }
+            }
+        }
+    }
+    .info{
+        color: $lightText;
+       
+        text-align: center;
+       p{
+        opacity: 50%;
+       }
+       p>a{
+            text-decoration: none;
+            color: white;
+    }
+    }
+
+}
+@media screen and (max-width:446px){
+    footer{
+        text-align: center;
+        .blocks{
+            flex-direction: column;
+            .block{
+                margin-bottom: 60px;
+            }
+        }
+    }
+}
